@@ -37,7 +37,7 @@ class _HomepageState extends State<Homepage> {
     Task(task: 'Visit Mars'),
   ];
 
-  int countChecked() {
+  int countSelected() {
     int count = 0;
     for (Task t in tasks) {
       if (t.isSelected) count++;
@@ -54,7 +54,7 @@ class _HomepageState extends State<Homepage> {
       body: Column(
         children: [
           LinearProgressIndicator(
-            value: countChecked() / tasks.length,
+            value: countSelected() / tasks.length,
             backgroundColor: Theme.of(context).primaryColor.withOpacity(0.5),
             minHeight: 10,
           ),
@@ -64,7 +64,7 @@ class _HomepageState extends State<Homepage> {
             itemBuilder: (context, index) => CheckboxListTile(
               value: tasks[index].isSelected,
               onChanged: (_) => setState(
-                () => tasks[index].select(),
+                tasks[index].select(),
               ),
               title: Text(
                 tasks[index].task,
